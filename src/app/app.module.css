@@ -1,0 +1,17 @@
+.wrapper {
+  width: 100vw;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex-grow: 2;
+  overflow-y: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url('/backgorund-image.webp');
+}
