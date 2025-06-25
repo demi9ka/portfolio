@@ -1,9 +1,10 @@
+import { Header } from '@/components/header'
 import { Provider } from './provider'
 import { Routing } from './routing'
-import { Header } from './ui/header'
-import '@/feature/locale'
+import { initI18n } from '@/feature/locale'
 
 export const App = () => {
+  initI18n()
   return (
     <Provider>
       <Header />

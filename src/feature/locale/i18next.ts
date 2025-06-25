@@ -5,19 +5,21 @@ import { useLanguageStore } from '@/store/language-store'
 
 export const i18next = i18n.createInstance()
 
-const { language } = useLanguageStore.getState()
+export const initI18n = () => {
+  const { language } = useLanguageStore.getState()
 
-i18next
-  .use(HttpBackend)
-  .use(initReactI18next)
-  .init({
-    lng: language,
-    fallbackLng: 'ru',
-    debug: false,
-    interpolation: {
-      escapeValue: false
-    },
-    backend: {
-      loadPath: '/locales/{{lng}}/translation.json'
-    }
-  })
+  i18next
+    .use(HttpBackend)
+    .use(initReactI18next)
+    .init({
+      lng: language || 'ru', // fallback на 'ru' если language undefined
+      fallbackLng: 'ru',
+      debug: false,
+      interpolation: {
+        escapeValue: false
+      },
+      backend: {
+        loadPath: '/locales/{{lng}}/translation.json'
+      }
+    })
+}

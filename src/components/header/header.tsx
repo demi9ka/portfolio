@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { useLanguageStore } from '@/store/language-store'
 import { useThemeStore } from '@/store/theme-store'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, Code } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const NAV_DATA = [
@@ -24,11 +24,12 @@ export const Header = () => {
   return (
     <div className='z-10 fixed top-0 left-0 p-1  md:p-2 flex w-full justify-center'>
       <div
-        className={`rounded-lg md:rounded-2xl p-4 pl-8   max-w-[1536px] w-full flex items-center  backdrop-blur-xs  justify-between  transition-all duration-150 bg-neutral-300/60 dark:bg-neutral-900/80  `}
+        className={`rounded-lg md:rounded-2xl p-2 pl-6 sm:p-4 sm:pl-8  max-w-[1536px] w-full flex items-center  backdrop-blur-xs  justify-between  transition-all duration-150 bg-neutral-300/60 dark:bg-neutral-900/80  `}
       >
-        <div className='flex align-center gap-8'>
+        <div className='flex items-center gap-8'>
+          <Code width={26} height={26} />
           {NAV_DATA.map((el, i) => (
-            <Link className='text-2xl md:text-lg font-bold hover:opacity-80 ' key={i} to={el.href}>
+            <Link className='text-sm sm:text-lg font-bold hover:opacity-80 ' key={i} to={el.href}>
               {el.label}
             </Link>
           ))}

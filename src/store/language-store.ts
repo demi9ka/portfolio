@@ -14,13 +14,11 @@ export const useLanguageStore = create<LanguageStore>()(
   persist(
     set => ({
       language: 'ru',
-
       setLanguage: language => {
         set({ language })
         i18next.changeLanguage(language)
         document.documentElement.lang = language
       },
-
       detectBrowserLanguage: (): LanguageType => {
         const browserLanguages = navigator.languages || [navigator.language]
         for (const lang of browserLanguages) {
@@ -46,6 +44,7 @@ export const useLanguageStore = create<LanguageStore>()(
   )
 )
 
+// Инициализация после экспорта
 const initializeLanguage = () => {
   const store = useLanguageStore.getState()
   if (!store.language) {
@@ -54,4 +53,4 @@ const initializeLanguage = () => {
   }
 }
 
-initializeLanguage()
+initializeLanguage() // Теперь useLanguageStore уже объявлен
