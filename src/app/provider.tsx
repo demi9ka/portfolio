@@ -1,31 +1,20 @@
-import { ReactNode } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ToastContainer } from 'react-toastify'
-import { toastContainerProps } from '@/feature/toast'
 import { YandexMetrika } from '@/feature/yandex-metrika'
+import { I18nextProvider } from 'react-i18next'
+import type { ReactNode } from 'react'
+import { i18next } from '@/feature/locale'
 
 type Props = {
   children: ReactNode
 }
 
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 0,
-      staleTime: 1000 * 60 * 5
-    }
-  }
-})
-
 export const Provider = ({ children }: Props) => {
   return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <YandexMetrika counterId={102612557} />
-        <ToastContainer {...toastContainerProps} />
+      <I18nextProvider i18n={i18next}>
+        <YandexMetrika counterId={121} />
         {children}
-      </QueryClientProvider>
+      </I18nextProvider>
     </BrowserRouter>
   )
 }

@@ -1,17 +1,17 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import HttpBackend from 'i18next-http-backend'
-import { languageStore } from '@/store'
+import { useLanguageStore } from '@/store/language-store'
 
-// Создаём экземпляр i18n
 export const i18next = i18n.createInstance()
 
-// Инициализируем i18next
+const { language } = useLanguageStore.getState()
+
 i18next
   .use(HttpBackend)
   .use(initReactI18next)
   .init({
-    lng: languageStore.language,
+    lng: language,
     fallbackLng: 'ru',
     debug: false,
     interpolation: {
@@ -21,10 +21,3 @@ i18next
       loadPath: '/locales/{{lng}}/translation.json'
     }
   })
-
-const originalSetLanguage = languageStore.setLanguage
-languageStore.setLanguage = (language: 'ru' | 'en') => {
-  originalSetLanguage(language)
-  i18next.changeLanguage(language) // Теперь changeLanguage доступен
-  document.documentElement.lang = language
-}
